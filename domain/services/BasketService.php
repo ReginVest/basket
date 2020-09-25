@@ -6,6 +6,8 @@ namespace domain\services;
 
 use Doctrine\ORM\EntityManagerInterface;
 use domain\entity\Basket;
+use domain\entity\Order;
+use domain\entity\Product;
 use domain\repository\BasketRepositoryInterface;
 
 class BasketService
@@ -31,11 +33,15 @@ class BasketService
     }
 
     /**
+     * @param Product $product
+     * @param Order $order
      * @return Basket
      */
-    public function createBasket(): Basket
+    public function createBasketByProductOrder(Product $product, Order $order): Basket
     {
-        return new Basket;
+        return (new Basket)
+            ->setProductId($product->getId())
+            ->setOrderId($order->getId());
     }
 
     /**
@@ -52,6 +58,10 @@ class BasketService
         return $this->basketRepository->getById($id);
     }
 
+    /**
+     * @param Basket $basket
+     * @return Basket
+     */
     public function save(Basket $basket): Basket
     {
         $this->entityManager->persist($basket);
