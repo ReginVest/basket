@@ -1,0 +1,12 @@
+{
+    "name": "lx/package",
+    "authors": [
+        {
+            "name": "aportnov",
+            "email": "portnov21@gmail.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.7"
+    }
+}
